@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/renderer/src/*"], // 别名配置
+      "@icons/*": ["src/renderer/src/static/icon/*"],
+      "@utils/*": ["src/renderer/src/utils/*"],
+      "@images/*": ["src/renderer/src/static/image/*"],
+      "@components/*": ["src/renderer/src/components/*"]
+    }
+  },
+  "references": [{ "path": "./tsconfig.node.json" }, { "path": "./tsconfig.web.json" }],
+  "files": [],
+  "include": [
+    "src/renderer/src/declare" // 确保包含声明文件目录
+  ]
+}

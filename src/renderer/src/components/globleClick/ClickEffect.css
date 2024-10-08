@@ -1,0 +1,21 @@
+.click-effect {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background-color: blue;
+  border-radius: 50%;
+  pointer-events: none; /* 防止效果元素影响其他点击事件 */
+  transform: translate(-50%, -50%); /* 确保点击点位于圆心 */
+  animation: click-animation 0.5s ease-out;
+}
+
+@keyframes click-animation {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}

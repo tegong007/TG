@@ -1,0 +1,13 @@
+module.exports = {
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    '@electron-toolkit/eslint-config-ts/recommended',
+    '@electron-toolkit/eslint-config-prettier'
+  ],
+  rules: {
+    // '@typescript-eslint/explicit-function-return-type': 'off', // 禁用返回类型检查
+    'react/prop-types': 'off'
+  }
+}
