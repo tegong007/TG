@@ -8,11 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-#    runs-on: [self-hosted,Linux,ARM64]
     strategy:
       matrix:
         architecture: [ arm64 ]  # 指定 ARM 架构
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -28,7 +26,7 @@ jobs:
           echo "$(npm bin -g)" >> $GITHUB_PATH
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile  # 使用 pnpm 安装依赖
 
       - name: Install Ruby and fpm
         run: |
@@ -41,16 +39,14 @@ jobs:
           USE_SYSTEM_FPM: "true"
         run: pnpm run build:linux
 
-      - name: Build the Electron app
-        run: pnpm run build:linux
-
       - name: Upload Specific Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: ds-ic-app-${{ github.ref_name }}
+          name: build-artifacts
           path: |
             ./dist/*
-            !**/linux-unpacked/**  # 排除 linux-unpacked 目录
+            !**/linux-unpacked/**
+          if-no-files-found: error  # 如果未找到文件，则抛出错误
 
   release:
     needs: build
@@ -64,14 +60,14 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: ds-ic-app-${{ github.ref_name }}
-          path: dist
-          retention-days: 1
+          name: build-artifacts
+          path: dist  # 确保路径正确
 
       - name: Compress direct files in dist
         run: |
           cd dist
           find . -maxdepth 1 -type f -exec zip ../release-${{ github.ref_name }}.zip {} +
+
       - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
