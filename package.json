@@ -10,9 +10,7 @@
     "serve": "vue-cli-service serve",
     "start": "chcp 65001 && electron .",
     "vueBuild": "vue-cli-service build",
-    "appBuild": "electron-builder -w && electron-builder -l",
-    "appBuildWin": "electron-builder -w",
-    "appBuildLinux": "electron-builder -l",
+    "appBuild": "electron-builder -w ",
     "fix-memory-limit": "cross-env LIMIT=8096 increase-memory-limit"
   },
   "dependencies": {
@@ -24,6 +22,7 @@
     "ffi-rs": "^1.0.50",
     "increase-memory-limit": "^1.0.6",
     "normalize.css": "^8.0.1",
+    "pnpm": "^9.12.1",
     "sql.js": "^1.10.3",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
@@ -60,13 +59,23 @@
       "node": true,
       "vue/setup-compiler-macros": true
     },
-    "extends": ["plugin:vue/vue3-essential", "eslint:recommended", "@vue/typescript/recommended", "plugin:prettier/recommended"],
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended",
+      "@vue/typescript/recommended",
+      "plugin:prettier/recommended"
+    ],
     "parserOptions": {
       "ecmaVersion": 2024
     },
     "rules": {}
   },
-  "browserslist": ["> 1%", "last 2 versions", "not dead", "not ie 11"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
   "build": {
     "appId": "JIANGMEN.DASCOM.COMPUTER.PERIPHERALS",
     "productName": "DS-LICraftsmen",
@@ -77,7 +86,12 @@
       "buildResources": "resources",
       "output": "release/${buildVersion}"
     },
-    "files": ["build/dist", "resources/icon", "src/main", "src/preload"],
+    "files": [
+      "build/dist",
+      "resources/icon",
+      "src/main",
+      "src/preload"
+    ],
     "extraResources": [
       {
         "from": "./release/html/",
@@ -102,7 +116,9 @@
       "target": [
         {
           "target": "nsis",
-          "arch": ["ia32"]
+          "arch": [
+            "ia32"
+          ]
         }
       ]
     },
@@ -111,7 +127,9 @@
       "target": [
         {
           "target": "AppImage",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
       ]
     },
