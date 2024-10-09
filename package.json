@@ -113,12 +113,10 @@
       "target": [
         {
           "target": "deb",
-          "arch": ["x64"]
+          "arch": ["arm64"]
         }
       ]
     },
     "mac": {}
   }
 }
-  
-
