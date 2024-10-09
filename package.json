@@ -9,9 +9,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "start": "chcp 65001 && electron .",
-    "vueBuild": "vue-cli-service build",
-    "appBuild": "electron-builder -w ",
-    "fix-memory-limit": "cross-env LIMIT=8096 increase-memory-limit"
+    "build": "vue-cli-service build && electron-builder -w",
+    "fix-memory-limit": "cross-env LIMIT=8096 increase-memory-limit",
+    "build:linux": "electron-builder --linux"
   },
   "dependencies": {
     "@types/node": "^22.7.4",
