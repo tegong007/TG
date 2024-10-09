@@ -72,7 +72,8 @@
   "build": {
     "appId": "JIANGMEN.DASCOM.COMPUTER.PERIPHERALS",
     "productName": "DS-LICraftsmen",
-    "asar": false,
+    "asar": true,
+    "asarUnpack": ["./resources/icon/"],
     "copyright": "得实集团",
     "buildVersion": "1.0.0.0",
     "directories": {
@@ -89,7 +90,6 @@
         "from": "./resources/common/",
         "to": "../common/"
       }
-
     ],
     "nsis": {
       "oneClick": false,
@@ -107,6 +107,7 @@
     },
     "linux": {
       "icon": "./resources/icon/logo.png",
+      "category": "Utility",
       "target": [
         {
           "target": "deb",
