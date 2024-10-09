@@ -1,0 +1,71 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "SourceHanSansCN";
+  src: url("../font/HanSans.otf");
+}
+
+* {
+  font-family: "SourceHanSansCN";
+  user-select: none;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 3px;
+  -webkit-tap-highlight-color: #00000000;
+}
+
+input,
+textarea {
+  outline: 0;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 2px solid #8dbcff;
+}
+
+input.hover,
+textarea.hover {
+  border: 8px solid #8dbcff !important;
+  box-shadow: 0px 2px 2px 0px #00000040;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #aecbf5;
+}
+
+button {
+  outline: 0;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px 0px #00000040;
+  cursor: pointer;
+}
+
+button:active,
+button.active {
+  filter: brightness(85%);
+}
+
+button:disabled {
+  filter: brightness(80%);
+  cursor: not-allowed;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: #f4f4f5;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #1f8bf9;
+  background-clip: padding-box;
+  min-height: 28px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #aecbf5;
+}

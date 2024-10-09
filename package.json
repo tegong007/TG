@@ -1,78 +1,120 @@
 {
-  "name": "ds-ic-app",
-  "version": "1.0.104.0.0",
-  "description": "ds-ic-app",
-  "author": "dascom.com",
-  "homepage": "https://dascom.com",
-  "main": "./out/main/index.js",
+  "name": "ds-lic",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/main/main.js",
+  "description": "Dascom Light and Ink Craftsmen",
+  "author": "Dascom",
+  "homepage": "https://dascom.cn",
   "scripts": {
-    "format": "prettier --write .",
-    "lint2": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
-    "lint": "eslint . --fix",
-    "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
-    "typecheck:web": "tsc --noEmit -p tsconfig.web.json --composite false",
-    "typecheck": "npm run typecheck:node && npm run typecheck:web",
-    "start": "electron-vite preview",
-    "dev": "electron-vite dev",
-    "build": "npm run typecheck && electron-vite build",
-    "postinstall": "electron-builder install-app-deps",
-    "build:unpack": "npm run build && electron-builder --dir",
-    "build:win": "npm run build && electron-builder --win",
-    "build:mac": "electron-vite build && electron-builder --mac",
-    "build:linux": "electron-vite build && electron-builder --linux"
+    "serve": "vue-cli-service serve",
+    "start": "chcp 65001 && electron .",
+    "vueBuild": "vue-cli-service build",
+    "appBuild": "electron-builder -w && electron-builder -l",
+    "appBuildWin": "electron-builder -w",
+    "appBuildLinux": "electron-builder -l",
+    "fix-memory-limit": "cross-env LIMIT=8096 increase-memory-limit"
   },
   "dependencies": {
-    "@electron-toolkit/preload": "^3.0.0",
-    "@electron-toolkit/utils": "^3.0.0",
-    "@prisma/client": "^5.16.1",
-    "@radix-ui/react-alert-dialog": "^1.0.5",
-    "@radix-ui/react-dialog": "^1.0.5",
-    "@radix-ui/react-dropdown-menu": "^2.1.0",
-    "@radix-ui/react-scroll-area": "^1.1.0",
-    "@radix-ui/react-slot": "^1.0.2",
-    "@radix-ui/react-toast": "^1.2.0",
-    "@stomp/stompjs": "^7.0.0",
-    "antd": "^5.18.1",
-    "axios": "^1.7.2",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "face-api.js": "^0.22.2",
-    "lucide-react": "^0.395.0",
-    "react-error-boundary": "^4.0.13",
-    "react-simple-keyboard": "^3.7.127",
-    "tailwind-merge": "^2.3.0",
-    "tailwindcss-animate": "^1.0.7",
-    "vite-plugin-svgr": "^4.2.0",
-    "ws": "^8.18.0",
-    "zustand": "^4.5.2",
-    "zustand-persist": "^0.4.0"
+    "@types/node": "^22.7.4",
+    "ant-design-vue": "^4.2.5",
+    "axios": "^1.6.7",
+    "core-js": "^3.8.3",
+    "electron-log": "^5.1.1",
+    "ffi-rs": "^1.0.50",
+    "increase-memory-limit": "^1.0.6",
+    "normalize.css": "^8.0.1",
+    "sql.js": "^1.10.3",
+    "vue": "^3.2.13",
+    "vue-class-component": "^8.0.0-0",
+    "vue-router": "^4.0.3",
+    "vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.21.1",
-    "@electron-toolkit/eslint-config-prettier": "^2.0.0",
-    "@electron-toolkit/eslint-config-ts": "^1.0.1",
-    "@electron-toolkit/tsconfig": "^1.0.1",
-    "@eslint-react/eslint-plugin": "^1.5.16",
-    "@types/node": "^18.19.9",
-    "@types/react": "^18.2.48",
-    "@types/react-dom": "^18.2.18",
-    "@vitejs/plugin-react": "^4.2.1",
-    "autoprefixer": "^10.4.19",
-    "electron": "^28.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/eslint-config-typescript": "^9.1.0",
+    "autoprefixer": "^10.4.20",
+    "electron": "^22.3.27",
     "electron-builder": "^24.9.1",
-    "electron-vite": "^2.0.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "postcss": "^8.4.38",
-    "prettier": "^3.2.4",
-    "prisma": "^5.16.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.23.1",
-    "tailwindcss": "^3.4.4",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.12"
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "less": "^4.0.0",
+    "less-loader": "^8.0.0",
+    "postcss": "^8.4.47",
+    "prettier": "^2.4.1",
+    "tailwindcss": "^3.4.13",
+    "typescript": "~4.5.5"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true,
+      "vue/setup-compiler-macros": true
+    },
+    "extends": ["plugin:vue/vue3-essential", "eslint:recommended", "@vue/typescript/recommended", "plugin:prettier/recommended"],
+    "parserOptions": {
+      "ecmaVersion": 2024
+    },
+    "rules": {}
+  },
+  "browserslist": ["> 1%", "last 2 versions", "not dead", "not ie 11"],
+  "build": {
+    "appId": "JIANGMEN.DASCOM.COMPUTER.PERIPHERALS",
+    "productName": "DS-LICraftsmen",
+    "asar": false,
+    "copyright": "得实集团",
+    "buildVersion": "1.0.0.0",
+    "directories": {
+      "buildResources": "resources",
+      "output": "release/${buildVersion}"
+    },
+    "files": ["build/dist", "resources/icon", "src/main", "src/preload"],
+    "extraResources": [
+      {
+        "from": "./release/html/",
+        "to": "../html/"
+      },
+      {
+        "from": "./resources/common/",
+        "to": "../common/"
+      },
+      {
+        "from": "./resources/monitor/",
+        "to": "../monitor/"
+      }
+    ],
+    "nsis": {
+      "oneClick": false,
+      "language": "2052",
+      "allowToChangeInstallationDirectory": true
+    },
+    "win": {
+      "icon": "./resources/icon/logo.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["ia32"]
+        }
+      ]
+    },
+    "linux": {
+      "icon": "./resources/icon/logo.png",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "mac": {}
   }
 }
