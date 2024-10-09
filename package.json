@@ -4,7 +4,11 @@
   "private": true,
   "main": "src/main/main.js",
   "description": "Dascom Light and Ink Craftsmen",
-  "author": "Dascom",
+  "author": {
+    "name": "Dascom",
+    "email": "1164921330@qq.com",
+    "url": "http://yourwebsite.com"
+  },
   "homepage": "https://dascom.cn",
   "scripts": {
     "serve": "vue-cli-service serve",
