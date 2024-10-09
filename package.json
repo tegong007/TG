@@ -59,23 +59,13 @@
       "node": true,
       "vue/setup-compiler-macros": true
     },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended",
-      "@vue/typescript/recommended",
-      "plugin:prettier/recommended"
-    ],
+    "extends": ["plugin:vue/vue3-essential", "eslint:recommended", "@vue/typescript/recommended", "plugin:prettier/recommended"],
     "parserOptions": {
       "ecmaVersion": 2024
     },
     "rules": {}
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "not dead", "not ie 11"],
   "build": {
     "appId": "JIANGMEN.DASCOM.COMPUTER.PERIPHERALS",
     "productName": "DS-LICraftsmen",
@@ -86,12 +76,7 @@
       "buildResources": "resources",
       "output": "release/${buildVersion}"
     },
-    "files": [
-      "build/dist",
-      "resources/icon",
-      "src/main",
-      "src/preload"
-    ],
+    "files": ["build/dist", "resources/icon", "src/main", "src/preload"],
     "extraResources": [
       {
         "from": "./release/html/",
@@ -116,23 +101,11 @@
       "target": [
         {
           "target": "nsis",
-          "arch": [
-            "ia32"
-          ]
+          "arch": ["ia32"]
         }
       ]
     },
-    "linux": {
-      "icon": "./resources/icon/logo.png",
-      "target": [
-        {
-          "target": "AppImage",
-          "arch": [
-            "x64"
-          ]
-        }
-      ]
-    },
+    "linux": {},
     "mac": {}
   }
 }
