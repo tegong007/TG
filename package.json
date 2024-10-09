@@ -115,7 +115,9 @@
           "target": "deb",
           "arch": ["arm64"]
         }
-      ]
+      ],
+      "maintainer": "dascom.com",
+      "category": "Utility"
     },
     "mac": {}
   }
