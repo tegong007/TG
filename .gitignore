@@ -1,6 +1,6 @@
 .DS_Store
 node_modules
-release
+release/1.0.0.0
 resources/logs
 resources/monitor
 

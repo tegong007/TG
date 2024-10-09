@@ -6,8 +6,7 @@
   "description": "Dascom Light and Ink Craftsmen",
   "author": {
     "name": "Dascom",
-    "email": "1164921330@qq.com",
-    "url": "http://yourwebsite.com"
+    "email": "1164921330@qq.com"
   },
   "homepage": "https://dascom.cn",
   "scripts": {
@@ -90,10 +89,7 @@
         "from": "./resources/common/",
         "to": "../common/"
       },
-      {
-        "from": "./resources/monitor/",
-        "to": "../monitor/"
-      }
+
     ],
     "nsis": {
       "oneClick": false,
