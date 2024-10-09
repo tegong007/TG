@@ -105,7 +105,15 @@
         }
       ]
     },
-    "linux": {},
+    "linux": {
+      "icon": "./resources/icon/logo.png",
+      "target": [
+        {
+          "target": "deb",
+          "arch": ["arm64"]
+        }
+      ]
+    },
     "mac": {}
   }
 }
