@@ -46,7 +46,7 @@ jobs:
         with:
           name: build-artifacts
           path: |
-            ./release/*
+            ./release/1.0.0.0/*
             !**/linux-unpacked/**
           if-no-files-found: error # 如果未找到文件，则抛出错误
 
@@ -67,7 +67,7 @@ jobs:
 
       - name: Compress direct files in dist
         run: |
-          cd  dist
+          cd dist
           find . -maxdepth 1 -type f -exec zip ../release-${{ github.ref_name }}.zip {} +
 
       - name: Create Release
