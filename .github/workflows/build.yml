@@ -38,6 +38,9 @@ jobs:
         env:
           USE_SYSTEM_FPM: "true"
         run: pnpm run build:linux
+        env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Upload Specific Artifacts
         uses: actions/upload-artifact@v4
