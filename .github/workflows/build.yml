@@ -63,9 +63,9 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: dist # 确保路径正确
+          path: release/1.0.0.0 # 确保路径正确
 
-      - name: Compress direct files in dist
+      - name: Compress direct files in release/1.0.0.0
         run: |
           cd  release/1.0.0.0
           find . -maxdepth 1 -type f -exec zip ../release-${{ github.ref_name }}.zip {} +
