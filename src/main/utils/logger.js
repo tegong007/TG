@@ -3,7 +3,10 @@ const { pathTool, exitTool, readTool, deleteTool } = require("./toolkit");
 
 module.exports = {
   // 创建日志
-  createdLogger: (date, level = "info") => {
+  createdLogger: (date, level = "info", enableLogging) => {
+    if (!enableLogging) {
+      return null; // 不创建日志记录器
+    }
     exitTool("logs/", true);
     // 清除过期日志
     const files = readTool("logs", "path");

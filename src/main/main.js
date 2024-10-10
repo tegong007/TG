@@ -19,7 +19,7 @@ app.disableHardwareAcceleration(); // 禁用硬件加速
 
 app.whenReady().then(async () => {
   config = await getConfig();
-  logger = createdLogger(new Date(), config.Logger_Level); // 开启日志
+  logger = createdLogger(new Date(), config.Logger_Level, false); // 开启日志
 
   try {
     win = new getWindow().createWindow(config); // 主窗体
@@ -32,11 +32,15 @@ app.whenReady().then(async () => {
     // 加载页面
     const App_Url = getHomepage(config.App_Url);
     App_Url ? win.loadFile(App_Url) : win.loadURL(config.App_Url);
-    logger.info("APP-Version:" + app.getVersion() + " | App_Url:" + App_Url || config.App_Url);
+    if (logger) {
+      logger.info("APP-Version:" + app.getVersion() + " | App_Url:" + App_Url || config.App_Url);
+    }
     win.setAspectRatio(config.App_Width / config.App_Height); // 固定页面比例
   } catch (err) {
-    logger.info("APP-Version:" + app.getVersion());
-    logger.error("App_Ready: " + (err.message || "加载页面错误"));
+    if (logger) {
+      logger.info("APP-Version:" + app.getVersion());
+      logger.error("App_Ready: " + (err.message || "加载页面错误"));
+    }
   }
 
   // 禁止软件多开
@@ -49,13 +53,17 @@ app.whenReady().then(async () => {
 });
 
 app.on("window-all-closed", () => {
-  quitLogger(logger);
+  if (logger) {
+    quitLogger(logger);
+  }
   if (process.platform !== "darwin") app.quit();
 });
 
 // 监听崩溃事件
 app.on("crash", () => {
-  crashLogger(logger);
+  if (logger) {
+    crashLogger(logger);
+  }
   app.exit(1);
 });
 
@@ -71,7 +79,9 @@ ipcMain.handle("Main_System", async (event, param) => {
         if (temp.length) result = { ...result, Printer_Name: temp[0].pName, Film_IP: temp[0].pIP, Report_Name: "" };
         result = { ...result, Version: app.getVersion() };
       } catch (err) {
-        logger.error("Main_System: " + (err.message || "获取配置文件错误"));
+        if (logger) {
+          logger.error("Main_System: " + (err.message || "获取配置文件错误"));
+        }
         result = {};
       }
       return result;
@@ -86,16 +96,18 @@ ipcMain.handle("Main_System", async (event, param) => {
 ipcMain.handle("Main_Library", async (event, param) => {
   return new Promise((resolve, reject) => {
     const ignore = ["TestDicomEcho", "CheckSeverDatabaseConntect"];
-    if (!ignore.includes(param.fName)) logger.debug("Lib-Request(" + param.fName + "): " + JSON.stringify(param));
+    if (!ignore.includes(param.fName) && logger) logger.debug("Lib-Request(" + param.fName + "): " + JSON.stringify(param));
     if (!libProcess) {
       libProcess = new Worker(getWorker("library"));
       libProcess.on("message", (result) => {
-        if (!ignore.includes(result.fName)) logger.debug("Lib-Response(" + result.fName + "): " + JSON.stringify(result.data));
+        if (!ignore.includes(result.fName) && logger) logger.debug("Lib-Response(" + result.fName + "): " + JSON.stringify(result.data));
         const { resolve } = libPromise.shift();
         resolve(result.data);
       });
       libProcess.on("error", (error) => {
-        logger.error("Main_Library: " + error.message || "调用C++库错误");
+        if (logger) {
+          logger.error("Main_Library: " + error.message || "调用C++库错误");
+        }
         const { reject } = libPromise.shift();
         reject(error.data);
       });
@@ -109,12 +121,14 @@ ipcMain.handle("Main_Library", async (event, param) => {
 ipcMain.handle("Main_Datebase", async (event, param) => {
   const ignore = ["dict", "desc"];
   try {
-    if (!ignore.includes(param.db)) logger.debug("DB-Request(" + param.db + "): " + JSON.stringify(param));
+    if (!ignore.includes(param.db) && logger) logger.debug("DB-Request(" + param.db + "): " + JSON.stringify(param));
     const result = await useDatebase(param);
-    if (!ignore.includes(param.db)) logger.debug("DB-Response(" + param.db + "): " + JSON.stringify(result));
+    if (!ignore.includes(param.db) && logger) logger.debug("DB-Response(" + param.db + "): " + JSON.stringify(result));
     return result;
   } catch (err) {
-    logger.error("Main_Datebase(" + param.db + "): " + (err.data || "查询数据库错误"));
+    if (logger) {
+      logger.error("Main_Datebase(" + param.db + "): " + (err.data || "查询数据库错误"));
+    }
     return false;
   }
 });
