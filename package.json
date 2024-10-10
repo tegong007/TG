@@ -14,7 +14,7 @@
     "start": "chcp 65001 && electron .",
     "build": "vue-cli-service build && electron-builder -w",
     "fix-memory-limit": "cross-env LIMIT=8096 increase-memory-limit",
-    "build:linux": "electron-builder --linux"
+    "build:linux": "vue-cli-service build && electron-builder --linux"
   },
   "dependencies": {
     "@types/node": "^22.7.4",
@@ -88,10 +88,6 @@
       {
         "from": "./resources/common/",
         "to": "../common/"
-      },
-      {
-        "from": "./resources/monitor/",
-        "to": "../monitor/"
       }
     ],
     "nsis": {
@@ -113,7 +109,7 @@
       "target": [
         {
           "target": "deb",
-          "arch": ["arm64"]
+          "arch": ["x64"]
         }
       ],
       "maintainer": "dascom.com",

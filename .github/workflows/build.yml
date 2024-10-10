@@ -3,14 +3,14 @@ name: Build and Release Electron App
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        architecture: [ arm64 ]  # 指定 ARM 架构
+        architecture: [x64] # 指定 ARM 架构
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: "20"
 
       - name: Install pnpm
         run: |
@@ -26,7 +26,7 @@ jobs:
           echo "$(npm bin -g)" >> $GITHUB_PATH
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile  # 使用 pnpm 安装依赖
+        run: pnpm install --frozen-lockfile # 使用 pnpm 安装依赖
 
       - name: Install Ruby and fpm
         run: |
@@ -46,7 +46,7 @@ jobs:
           path: |
             ./dist/*
             !**/linux-unpacked/**
-          if-no-files-found: error  # 如果未找到文件，则抛出错误
+          if-no-files-found: error # 如果未找到文件，则抛出错误
 
   release:
     needs: build
@@ -61,7 +61,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: dist  # 确保路径正确
+          path: dist # 确保路径正确
 
       - name: Compress direct files in dist
         run: |
