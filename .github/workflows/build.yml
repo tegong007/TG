@@ -46,7 +46,7 @@ jobs:
         with:
           name: build-artifacts
           path: |
-            ./dist/*
+            ./release/html/*
             !**/linux-unpacked/**
           if-no-files-found: error # 如果未找到文件，则抛出错误
 
