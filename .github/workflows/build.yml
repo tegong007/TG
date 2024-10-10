@@ -37,10 +37,9 @@ jobs:
       - name: Build the Electron app
         env:
           USE_SYSTEM_FPM: "true"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: pnpm run build:linux
-        env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Upload Specific Artifacts
         uses: actions/upload-artifact@v4
