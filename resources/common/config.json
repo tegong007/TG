@@ -2,8 +2,8 @@
   "Logger_Level": "debug",
   "App_Width": 1920,
   "App_Height": 1080,
-  "App_Window": false,
-  "App_Devtool": false,
+  "App_Window": true,
+  "App_Devtool": true,
   "App_Url": "html/index.html",
   "Film_Port": "8082"
 }
